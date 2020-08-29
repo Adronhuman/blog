@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text = "${name}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    .blog-header-logo {
+    font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+    font-size: 2.25rem;
+}
+</style>
+<body>
+<div class="container">
+    <header th:insert = "Admin/Main/header_admin"></header>
+</div>
+<div class="container">
+    <h1 style="text-align: center">Блог </h1>
+    <form method="post" action= "word">
+        <input placeholder="Найти по назві" name = "word">
+        <button type="submit">Знайти</button>
+    </form>
+    <a href = "/admin/blog/add" style="text-align: right">Додати статтю</a>
+    <div th:each="post : ${posts}" class = "alert alert-info" style="margin-top: 20px">
+        <h3 th:text = "${post.title}"/>
+        <p th:text = "${post.anons}"/>
+        <a th:href = "'/admin/blog/' + ${post.id}">Читати повністю</a><br>
+        <a th:href="'/admin/blog/' + ${post.id}+'/edit'" class="btn btn-warning">Редагувати</a>
+        <a th:href="'/admin/blog/' + ${post.id}+'/remove'" class="btn btn-warning">Видалити</a><br>
+        <p th:text = "${post.date}" style="float:right"></p>
+    </div>
+</div>
+</body>
+</html>

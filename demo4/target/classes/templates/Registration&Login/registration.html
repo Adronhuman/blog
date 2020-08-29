@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Реєстрація</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    .blog-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.25rem;
+    }
+</style>
+<body class="text-center">
+<div class="container">
+    <header th:insert = "User/Main/header_user"></header>
+</div>
+<form action="/registration" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Реєстрація</h1>
+    <div><label> Ім'я користувача : <input  class="form-control" type="text" name="username"/> </label></div>
+    <div><label> Пароль : <input type="password" name="password"  class="form-control" /> </label></div>
+    <div><input class="btn btn-lg btn-primary btn-block" type="submit" value="Зареєструватись"/></div>
+</form>
+
+
+</body>
+</html>

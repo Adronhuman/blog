@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Логін</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    .blog-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.25rem;
+    }
+</style>
+<body>
+<div class="container">
+    <header th:insert = "User/Main/header_user"></header>
+</div>
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Авторизація</h1>
+    <div><label> Ім'я користувача : <input  class="form-control" type="text" name="username"/> </label></div>
+    <div><label> Пароль : <input type="password" name="password"  class="form-control" /> </label></div>
+    <div><input type="submit" value="Ввійти"/></div>
+</form>
+<a href="/registration"><h4>Реєстрація</h4></a>
+</body>
+</html>

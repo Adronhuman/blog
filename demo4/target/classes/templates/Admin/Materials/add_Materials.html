@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <header th:insert = "Admin/Main/header_admin"></header>
+</div>
+
+<div class="container mt-5" >
+
+<form action="add_Material" method="post">
+    <div style="align-content: center!important;">
+        <input type="text" name="name" placeholder="Назва файлу" class="form-control">
+        <input type="text" name="link" value="http://" class="form-control" >
+        <input type="text" name="tags" placeholder="Напишіть теги через кому" class="form control">
+        <button type="submit" class="btn btn-success">Додати файл</button>
+    </div>
+</form>
+</div>
+</body>
+</html>

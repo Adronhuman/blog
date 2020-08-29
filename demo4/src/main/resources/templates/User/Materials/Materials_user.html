@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Title</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    .blog-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.25rem;
+    }
+</style>
+<body>
+<div class="container">
+    <header th:insert = "User/Main/header_user"></header>
+</div>
+
+<form method="post" action= "/user/tags">
+    <input placeholder="Теги через кому" name = "tags">
+    <button type="submit">Знайти</button>
+</form>
+
+<div th:each="material : ${materials}" class = "alert alert-info" style="margin-top: 20px">
+    <h3 th:text = "${material.name}"/>
+    <div th:each="p :${material.getTags()}" >
+        <h5 th:text="'#'+${p}"></h5>
+    </div>
+    <a th:href="${material.link}" class="btn btn-warning">Перейти</a><br>
+    <p th:text = "${material.date}" style="float:right"></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text = "${name}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    .blog-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.25rem;
+    }
+</style>
+<body>
+<div class="container">
+    <header th:insert = "Admin/Main/header_admin"></header>
+</div>
+<div class="container">
+    <div class="jumbotron p-4 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+            <h1 class="display-4 font-italic" th:text = "${lastPost.title}"/>
+            <p class="lead my-3"  th:text = "${lastPost.anons}"/>
+            <p class="lead mb-0"><a th:href = "'/admin/blog/' + ${lastPost.id}" class="text-white font-weight-bold">Продовження...</a></p>
+        </div>
+        <p th:text = "${lastPost.date}" style="float:right"></p>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong th:text="Блог" class="d-inline-block mb-2 text-primary">World</strong>
+                    <h3 class="mb-0" th:text="${penultimatePost.title}" />
+                    <div class="mb-1 text-muted" th:text = "${penultimatePost.date}"/>
+                    <p class="card-text mb-auto" th:text = "${penultimatePost.anons}"/>
+                    <a th:href = "'/admin/blog/' + ${penultimatePost.id}" class="stretched-link">Continue reading</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <div th:each="p :${mat.getTags()}" >
+                        <strong class="d-inline-block mb-2 text-success" th:text="'#'+${p}"/>
+                    </div>
+                    <h3 class="mb-0" th:text="${mat.name}" />
+                    <div class="mb-1 text-muted" th:text="${mat.date}"/>
+                    <p class="card-text mb-auto" text=""/>
+                    <a th:href="${mat.link}" class="stretched-link">Continue reading</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Thumbnail"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+
+
+
+        </div><!-- /.blog-main -->
+
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">Блог .........................</p>
+            </div>
+
+            <div class="p-4">
+                <h4 class="font-italic">Архів</h4>
+                <div th:each="material : ${materials}" >
+                    <a th:text="${material.name}" th:href="${material.link}"></a>
+                </div>
+            </div>
+
+            <div class="p-4">
+                <h4 class="font-italic">Elsewhere</h4>
+                <ol class="list-unstyled">
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ol>
+            </div>
+        </aside><!-- /.blog-sidebar -->
+
+    </div><!-- /.row -->
+
+</main><!-- /.container -->
+
+
+</body>
+</html>

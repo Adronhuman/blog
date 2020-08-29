@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml">
+<head>
+    <title th:text = "${count}"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    .blog-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.25rem;
+    }
+</style>
+<body>
+<div class="container">
+    <header th:insert = "User/Main/header_user"></header>
+
+
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8 blog-main">
+                <div th:each="post : ${posts}" >
+                    <h1 th:text = "${post.title}" style="text-align: center"/>
+                    <p th:text = "${post.full_text}" class = "alert alert-info" style="text-align: center;word-wrap: break-word"/>
+                    <p th:text="${post.date}"></p>
+                </div>
+
+            </div><!-- /.blog-main -->
+
+            <aside class="col-md-4 blog-sidebar">
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="font-italic">About</h4>
+                    <p class="mb-0">Блог</p>
+                </div>
+
+    </main><!-- /.container -->
+
+</body>
+</html>

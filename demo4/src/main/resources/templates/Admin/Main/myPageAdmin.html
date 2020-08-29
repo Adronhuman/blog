@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html  xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Моя сторінка</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<style>
+    .blog-header-logo {
+        font-family: "Playfair Display", Georgia, "Times New Roman", serif;
+        font-size: 2.25rem;
+    }
+</style>
+<body>
+<div class="container">
+    <header th:insert = "Admin/Main/header_admin"></header>
+</div>
+<h1 style="text-align: center" >Акаунт користувача</h1>
+<h4 th:text=" 'Ім\'я : '+ ${user.getUsername()}"></h4>
+<h4 th:text=" 'Ролі : ' +${user.getRolesAsString()}"></h4>
+<h4 th:text="'Рейтинг: ' + ${user.getRank()}"></h4>
+<form action="changePassword" method="post">
+    <div><label> Старий пароль: <input type="password" name="password"  class="form-control" /> </label>
+        <p th:text="${message}"/></div>
+    <div><label> Новий пароль: <input type="password" name="new_password"  class="form-control" /> </label></div>
+    <div><input type="submit" value="Змінити"/></div>
+</form>
+<h1 style="text-align: center" >Акаунти користувачів</h1>
+<table>
+<tr th:each="us : ${users}" style="padding-left: 10px; font-size: 1.5rem">
+    <td th:text="${us.getUsername()}" />
+    <td th:text=" ' Рейтинг : '+${us.getRank()}" />
+    <form th:action="'/addRate'+${us.getId()}" method="post">
+    <td> <input type="number" name="extraRating"  class="form-control" /></td>
+    <td><input type="submit" value="Додати"/></td>
+    </form>
+    <td><form th:action="'/remove/user'+${us.getId()}" method="post"><input type="submit" value="Видалити"/></form></td>
+</tr>
+</table>
+</body>
+</html>
